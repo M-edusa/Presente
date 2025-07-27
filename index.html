@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Para Alana, minha rosa 🌹</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      color: #fff;
+      padding: 50px;
+      background-image: url('Pequeno principe.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center center;
+    }
+
+    h1, h2, p {
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    }
+
+    #mensagem-aniversario {
+      max-width: 900px;
+      margin: 0 auto 40px auto;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    #contador {
+      font-size: 24px;
+      margin: 20px 0;
+    }
+
+    #senha-container {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #presente {
+      display: none;
+      margin-top: 30px;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      background-color: #0400ff;
+      color: rgb(252, 248, 3);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #008cff;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .volume-control {
+      margin-top: 10px;
+    }
+
+    input[type="range"] {
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Música surpresa (tocará após senha correta) -->
+  <audio id="musica-presente" loop>
+    <source src="musica_presente.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio HTML.
+  </audio>
+  <div class="volume-control" id="volume-presente-container" style="display:none;">
+    🔊 Volume presente:
+    <input type="range" id="volume-presente" min="0" max="1" step="0.01" value="0.7" />
+  </div>
+
+  <div id="mensagem-aniversario">
+    <h2>🌹✨ Feliz aniversário, minha rosa! ✨🌹</h2>
+    <p>“Foi o tempo que dedicaste à tua rosa que a fez tão importante.”</p>
+    <p>Alana, minha rosa no imenso universo...<br />
+    Hoje é o seu dia, e eu não poderia deixar de te lembrar o quanto você é uma daquelas raras pessoas que valorizam o que só o coração sente.<br />
+    Você é única como a rosa do Pequeno Príncipe. Não só pela sua beleza, mas pelo cuidado, pela doçura, pela sensibilidade com que toca tudo e todos ao seu redor.</p>
+
+    <p>Você é meiga, doce, cheia de sentimentos profundos. Tem um brilho que encanta, um talento que surpreende, uma inteligência que ilumina sem esforço, e uma alegria tão contagiante que até os dias nublados ficam coloridos perto de você.</p>
+
+    <p>Mas o que mais admiro em você é a sua força. A força de quem já enfrentou desertos, ventos e tempestades… e mesmo assim escolheu florescer com ternura.<br />
+    É impossível não se encantar com você.<br />
+    É impossível não te amar.<br />
+    E eu agradeço todos os dias por ter te encontrado nesse universo tão grande.</p>
+
+    <p>Ter você na minha vida é como viajar entre planetas e descobrir que o mais bonito de todos é o seu coração.<br />
+    Neném, eu sou absurdamente sortudo por ter sido cativado por você. Por acordar todos os dias sabendo que, no meu pequeno universo, existe alguém tão incrível quanto você.</p>
+
+    <p>Mesmo com a distância eu me sinto privilegiado por estar com você.<br />
+    Como disse o Pequeno Príncipe:<br />
+    “Se tu vens, por exemplo, às quatro da tarde, desde as três eu começarei a ser feliz.”<br />
+    E é exatamente assim que me sinto sempre que penso em você.</p>
+
+    <p>Você me inspira, me dá orgulho, e me faz ver com o coração.<br />
+    Obrigado por existir. Obrigado por ser você.<br />
+    E por tudo o que já vivemos e ainda vamos viver, eu te agradeço.</p>
+
+    <p>Parabéns pelo seu dia, meu amor.<br />
+    Feliz aniversário, minha rosa mais rara. 🌹💫</p>
+
+    <p><strong>Com todo o meu amor,<br />Daniel ❤</strong></p>
+  </div>
+
+  <h1>🎁 A resposta está na sua frente / DICA: COLOQUE EM MAIUSCULO E RESPEITE OS ESPAÇOS 🎁</h1>
+  <div id="contador">Calculando...</div>
+
+  <div id="senha-container">
+    <p>Digite a senha para ver o presente (mas só se estiver pronta para sorrir muito e ter uma visão do nosso futuro se você quiser ficar cmg):</p>
+    <input type="password" id="senha" placeholder="Digite a senha" />
+    <button onclick="verificarSenha()">Liberar</button>
+    <p id="mensagem-erro" style="color:red;"></p>
+  </div>
+
+  <div id="presente">
+    <h2>🎉 Presente liberado! Feliz aniversário, amor da minha vida! Te amo mais do que as palavras conseguem dizer. O meu presente é simples, mas é de todo coração. A imagem a seguir é a maneira a qual eu imagino nós dois no futuro, estando juntos e comemorando um de seus aniversários. 🎉</h2>
+    <img src="presente.jpg" alt="Presente Surpresa" />
+  </div>
+
+  <script>
+    const dataAlvo = new Date("2025-08-31T00:20:01");
+    const senhaCorreta = "O PEQUENO PRINCIPE";
+
+    const musicaPresente = document.getElementById("musica-presente");
+    const volumePresente = document.getElementById("volume-presente");
+
+    volumePresente.addEventListener("input", () => {
+      musicaPresente.volume = volumePresente.value;
+    });
+
+    function atualizarContador() {
+      const agora = new Date();
+      const restante = dataAlvo - agora;
+      const divContador = document.getElementById("contador");
+      const divSenha = document.getElementById("senha-container");
+
+      if (restante <= 0) {
+        divContador.style.display = "none";
+        divSenha.style.display = "block";
+      } else {
+        const dias = Math.floor(restante / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((restante / (1000 * 60 * 60)) % 24);
+        const minutos = Math.floor((restante / (1000 * 60)) % 60);
+        const segundos = Math.floor((restante / 1000) % 60);
+
+        divContador.textContent = `⏳ Faltam ${dias} dias, ${horas}h ${minutos}min ${segundos}s para liberar!`;
+      }
+    }
+
+    function verificarSenha() {
+      const senha = document.getElementById("senha").value;
+      const erro = document.getElementById("mensagem-erro");
+      const presente = document.getElementById("presente");
+
+      if (senha === senhaCorreta) {
+        document.getElementById("senha-container").style.display = "none";
+        presente.style.display = "block";
+        document.getElementById("volume-presente-container").style.display = "block";
+        erro.textContent = "";
+
+        musicaPresente.currentTime = 0;
+        musicaPresente.play().catch((e) => {
+          console.log("Autoplay bloqueado.");
+        });
+      } else {
+        erro.textContent = "Senha incorreta. Tente novamente.";
+      }
+    }
+
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+  </script>
+
+</body>
+</html>
